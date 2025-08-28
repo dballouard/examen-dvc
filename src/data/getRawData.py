@@ -1,6 +1,7 @@
 import os
 import sys
 import requests
+import yaml
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from datetime import datetime
@@ -10,6 +11,9 @@ sys.path.append(root_path)
 
 from tools.logger import setup_logger
 logger = setup_logger(name="getRawData")
+
+with open('params.yaml', 'r') as f:
+    params = yaml.safe_load(f)
 
 def getRawData(DestPath):
     logger.info("downloading raw data from bucket")
@@ -37,7 +41,7 @@ def splitData(df):
         X = df.drop(columns=['silica_concentrate'])
         y = df['silica_concentrate']
 
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=params['train']['test_size'], random_state=params['train']['random_state'])
         return X_train, X_test, y_train, y_test
     
     except Exception as e:

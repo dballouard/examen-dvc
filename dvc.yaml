@@ -4,11 +4,15 @@ stages:
     deps:
       - src/data/getRawData.py
       - data/raw_data/raw.csv
+      - params.yaml
     outs:
       - data/processed_data/X_train.csv
       - data/processed_data/X_test.csv
       - data/processed_data/y_train.csv
       - data/processed_data/y_test.csv
+    params:
+      - train.test_size
+      - train.random_state
 
   normalize_data:
     cmd: python3 src/data/setFeatures.py
@@ -19,4 +23,3 @@ stages:
     outs:
       - data/processed_data/X_train_scaled.csv
       - data/processed_data/X_test_scaled.csv
-      

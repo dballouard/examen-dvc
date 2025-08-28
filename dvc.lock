@@ -7,10 +7,18 @@ stages:
       hash: md5
       md5: 617b56af2992376d5c3e91ad80823898
       size: 333757
+    - path: params.yaml
+      hash: md5
+      md5: 1233f20383d8dfe406a57c6bec142be4
+      size: 306
     - path: src/data/getRawData.py
       hash: md5
-      md5: 6eb976d90fc979e044616facbbb2830c
-      size: 2057
+      md5: 6c3e4f5f0af94da88ffc011105edd5b0
+      size: 2191
+    params:
+      params.yaml:
+        train.random_state: 42
+        train.test_size: 0.2
     outs:
     - path: data/processed_data/X_test.csv
       hash: md5
