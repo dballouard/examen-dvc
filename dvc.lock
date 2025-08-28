@@ -60,3 +60,64 @@ stages:
       hash: md5
       md5: c1b80eb7f083888b625dd0369cf381f8
       size: 227497
+  gridsearch:
+    cmd: python3 src/models/findBestParams.py
+    deps:
+    - path: data/processed_data/X_test_scaled.csv
+      hash: md5
+      md5: 5e079189af6bd091d651a89fafb1c290
+      size: 57026
+    - path: data/processed_data/X_train_scaled.csv
+      hash: md5
+      md5: c1b80eb7f083888b625dd0369cf381f8
+      size: 227497
+    - path: data/processed_data/y_test.csv
+      hash: md5
+      md5: a051d29629c8bbb4cfb7e85c7f0315da
+      size: 6456
+    - path: data/processed_data/y_train.csv
+      hash: md5
+      md5: a9cd9d91da89f732843d72548f64ded3
+      size: 25951
+    - path: params.yaml
+      hash: md5
+      md5: 1233f20383d8dfe406a57c6bec142be4
+      size: 306
+    - path: src/models/findBestParams.py
+      hash: md5
+      md5: b9ef0c851dd54a1dcc057e8fd4ceca3c
+      size: 1715
+    params:
+      params.yaml:
+        gridsearch.cv: 5
+        gridsearch.n_jobs: -1
+        gridsearch.param_grid:
+          n_estimators:
+          - 50
+          - 100
+          - 200
+          - 300
+          max_depth:
+          - None
+          - 10
+          - 20
+          min_samples_split:
+          - 2
+          - 5
+          - 10
+          min_samples_leaf:
+          - 1
+          - 2
+          max_features:
+          - log2
+          - sqrt
+          bootstrap:
+          - true
+        gridsearch.scoring: r2
+        gridsearch.verbose: 1
+        train.random_state: 42
+    outs:
+    - path: models/best_rf_params.pkl
+      hash: md5
+      md5: 3f09a50100fac8ee490a90ab90f42b07
+      size: 126

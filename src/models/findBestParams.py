@@ -23,13 +23,13 @@ X_test_scaled = pd.read_csv(root_path + "data/processed_data/X_test_scaled.csv")
 y_train = pd.read_csv(root_path + "data/processed_data/y_train.csv").values.ravel()
 y_test = pd.read_csv(root_path + "data/processed_data/y_test.csv").values.ravel()
 
-rf = RandomForestRegressor(random_state=42)
+rf = RandomForestRegressor(random_state=params['train']['random_state'])
 grid_search = GridSearchCV(
     estimator=rf,
     param_grid=params['gridsearch']['param_grid'],
     cv=params['gridsearch']['cv'],
     scoring=params['gridsearch']['scoring'],
-    n_jobs=params['gridsearch']['scoring'],
+    n_jobs=params['gridsearch']['n_jobs'],
     verbose=params['gridsearch']['verbose']
 )
 logger.info("Starting Grid Search")
