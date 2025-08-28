@@ -29,9 +29,7 @@ stages:
     deps:
       - src/models/findBestParams.py
       - data/processed_data/X_train_scaled.csv
-      - data/processed_data/X_test_scaled.csv
       - data/processed_data/y_train.csv
-      - data/processed_data/y_test.csv
       - params.yaml
     outs:
       - models/best_rf_params.pkl
@@ -43,4 +41,3 @@ stages:
       - gridsearch.verbose
       - gridsearch.param_grid
 
-      

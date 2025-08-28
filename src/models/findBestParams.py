@@ -19,9 +19,7 @@ with open('params.yaml', 'r') as f:
 
 logger.info("Loading processed data")
 X_train_scaled = pd.read_csv(root_path + "data/processed_data/X_train_scaled.csv")
-X_test_scaled = pd.read_csv(root_path + "data/processed_data/X_test_scaled.csv")
 y_train = pd.read_csv(root_path + "data/processed_data/y_train.csv").values.ravel()
-y_test = pd.read_csv(root_path + "data/processed_data/y_test.csv").values.ravel()
 
 rf = RandomForestRegressor(random_state=params['train']['random_state'])
 grid_search = GridSearchCV(
@@ -40,9 +38,9 @@ logger.info(f"Best R² score (CV) : {grid_search.best_score_:.4f}")
 logger.info(f"Best params : {grid_search.best_params_}")
 best_rf = grid_search.best_estimator_
 
-y_pred = best_rf.predict(X_test_scaled)
-r2 = r2_score(y_test, y_pred)
-logger.info(f"R² on test : {r2:.4f}")
+# y_pred = best_rf.predict(X_test_scaled)
+# r2 = r2_score(y_test, y_pred)
+# logger.info(f"R² on test : {r2:.4f}")
 
 logger.info("Saving best params")
 with open(os.path.join(root_path,"models/best_rf_params.pkl"), 'wb') as f:
