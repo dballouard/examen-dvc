@@ -1,0 +1,12 @@
+stages:
+  split_data:
+    cmd: python3 src/data/getRawData.py
+    deps:
+      - src/data/getRawData.py
+      - data/raw_data/raw.csv
+    outs:
+      - data/processed_data/X_train.csv
+      - data/processed_data/X_test.csv
+      - data/processed_data/y_train.csv
+      - data/processed_data/y_test.csv
+
