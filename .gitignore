@@ -1,2 +1,29 @@
-/venv
-/clean_data.csv
+# environnement virtuel
+venv/
+
+# pythons compilés
+__pycache__/
+
+#Jupyter Notebook
+.ipynb_checkpoints
+
+*.pkl
+logs/
+
+# Data qui seront gérés par DVC
+/data/*/
+/data/**/*
+
+!/data/.gitkeep
+!/data/.gitignore
+!/data/*/.gitignore
+!/data/**/.gitignore
+!/data/**/*.dvc
+!/data/**/.gitkeep
+
+# Modèles qui seront gérés par DVC
+/models/*.pkl
+!/models/.gitkeep
+
+# DVC
+/tmp/dvcstore

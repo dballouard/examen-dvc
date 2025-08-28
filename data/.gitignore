@@ -1,4 +1,15 @@
-/scaling_model.dill
-/scaling_model.pkl
-/gbrt_model.pkl
-/prediction.csv
+
+# on garde les fichiers .dvc
+!*.dvc
+
+# les fichiers .gitkeep pour préserver la structure des dossiers
+!.gitkeep
+
+# on garde ce .gitignore
+!.gitignore
+
+# on garde les fichiers de config. DVC
+!*.yaml
+!*.yml
+!*.json
+
