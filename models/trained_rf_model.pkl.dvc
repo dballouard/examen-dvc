@@ -1,5 +1,0 @@
-outs:
-- md5: 780c8adab7a5fd21e5e87f01bfb6cc0a
-  size: 6235545
-  hash: md5
-  path: trained_rf_model.pkl

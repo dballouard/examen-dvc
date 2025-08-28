@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import yaml
 import sys
 import os
 from sklearn.ensemble import RandomForestRegressor
@@ -13,29 +14,23 @@ sys.path.append(root_path)
 from tools.logger import setup_logger
 logger = setup_logger(name="findBestParams")
 
+with open('params.yaml', 'r') as f:
+    params = yaml.safe_load(f)
+
 logger.info("Loading processed data")
 X_train_scaled = pd.read_csv(root_path + "data/processed_data/X_train_scaled.csv")
 X_test_scaled = pd.read_csv(root_path + "data/processed_data/X_test_scaled.csv")
 y_train = pd.read_csv(root_path + "data/processed_data/y_train.csv").values.ravel()
 y_test = pd.read_csv(root_path + "data/processed_data/y_test.csv").values.ravel()
 
-param_grid = {
-    'n_estimators': [50, 100],
-    'max_depth': [None, 10, 20],
-    'min_samples_split': [2, 5],
-    'min_samples_leaf': [1, 2],
-    'max_features': ['log2', 'sqrt'],
-    'bootstrap': [True]
-}
-
 rf = RandomForestRegressor(random_state=42)
 grid_search = GridSearchCV(
     estimator=rf,
-    param_grid=param_grid,
-    cv=5,
-    scoring='r2',
-    n_jobs=-1,
-    verbose=1
+    param_grid=params['gridsearch']['param_grid'],
+    cv=params['gridsearch']['cv'],
+    scoring=params['gridsearch']['scoring'],
+    n_jobs=params['gridsearch']['scoring'],
+    verbose=params['gridsearch']['verbose']
 )
 logger.info("Starting Grid Search")
 grid_search.fit(X_train_scaled, y_train)

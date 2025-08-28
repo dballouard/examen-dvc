@@ -10,3 +10,13 @@ stages:
       - data/processed_data/y_train.csv
       - data/processed_data/y_test.csv
 
+  normalize_data:
+    cmd: python3 src/data/setFeatures.py
+    deps:
+      - src/data/setFeatures.py
+      - data/processed_data/X_train.csv
+      - data/processed_data/X_test.csv
+    outs:
+      - data/processed_data/X_train_scaled.csv
+      - data/processed_data/X_test_scaled.csv
+      
