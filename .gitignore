@@ -7,7 +7,7 @@ __pycache__/
 #Jupyter Notebook
 .ipynb_checkpoints
 
-*.pkl
+# logs
 logs/
 
 # Data qui seront gérés par DVC
@@ -17,6 +17,7 @@ logs/
 # Modèles qui sera géré par DVC
 /models/trained_rf_model.pkl
 !/models/.gitkeep
+
 
 # DVC
 /tmp/dvcstore
