@@ -51,4 +51,14 @@ stages:
     outs:
       - models/trained_rf_model.pkl
 
-      
+  predict:
+    cmd: python3 src/models/predict.py
+    deps:
+      - src/models/predict.py
+      - models/trained_rf_model.pkl
+      - data/processed_data/X_test_scaled.csv
+      - data/processed_data/y_test.csv
+    outs:
+      - data/y_pred.csv
+      - metrics/scores.json
+            
