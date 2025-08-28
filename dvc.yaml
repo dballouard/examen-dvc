@@ -41,3 +41,14 @@ stages:
       - gridsearch.verbose
       - gridsearch.param_grid
 
+  train_model:
+    cmd: python3 src/models/trainModel.py
+    deps:
+      - src/models/trainModel.py
+      - models/best_rf_params.pkl
+      - data/processed_data/X_train_scaled.csv
+      - data/processed_data/y_train.csv
+    outs:
+      - models/trained_rf_model.pkl
+
+      

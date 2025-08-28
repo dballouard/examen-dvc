@@ -15,9 +15,7 @@ logger = setup_logger(name="trainModel")
 
 logger.info("Loading processed data for training")
 X_train_scaled = pd.read_csv(root_path + "data/processed_data/X_train_scaled.csv")
-X_test_scaled = pd.read_csv(root_path + "data/processed_data/X_test_scaled.csv")
 y_train = pd.read_csv(root_path + "data/processed_data/y_train.csv").values.ravel()
-y_test = pd.read_csv(root_path + "data/processed_data/y_test.csv").values.ravel()
 
 logger.info("Loading best parameters")
 with open(os.path.join(root_path,"models/best_rf_params.pkl"), 'rb') as f:
